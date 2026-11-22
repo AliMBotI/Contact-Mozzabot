@@ -71,7 +71,7 @@ function FloatingField({
   )
 }
 
-export function ContactForm() {
+export function ContactForm({ contactEmail }: { contactEmail: string }) {
   const [values, setValues] = useState<FormValues>(initialValues)
   const [errors, setErrors] = useState<FormErrors>({})
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
@@ -89,7 +89,11 @@ export function ContactForm() {
     if (Object.keys(nextErrors).length) return
 
     setStatus('loading')
-    await new Promise((resolve) => setTimeout(resolve, 900))
+    const subject = encodeURIComponent(values.subject)
+    const body = encodeURIComponent(
+      `Name: ${values.name}\nEmail: ${values.email}\n\n${values.message}`,
+    )
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`
     setStatus('success')
     setValues(initialValues)
   }
@@ -99,7 +103,7 @@ export function ContactForm() {
       {status === 'success' && (
         <div role="status" className="flex items-start gap-3 rounded-xl border border-emerald-500/25 bg-emerald-500/10 p-4 text-sm text-emerald-700 dark:text-emerald-300">
           <CheckCircle2 className="mt-0.5 size-5 shrink-0" aria-hidden="true" />
-          <div><p className="font-medium">Message sent successfully.</p><p className="mt-1 opacity-80">Thanks for reaching out. We&apos;ll be in touch soon.</p></div>
+          <div><p className="font-medium">Your email app should open.</p><p className="mt-1 opacity-80">Send the prepared message from there. You can also contact us directly at {contactEmail}.</p></div>
         </div>
       )}
       {status === 'error' && <p role="alert" className="rounded-xl border border-destructive/25 bg-destructive/10 p-4 text-sm text-destructive">Something went wrong. Please try again.</p>}
