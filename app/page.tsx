@@ -2,7 +2,7 @@ import { ArrowUpRight, Clock3, Mail, MessageCircle } from 'lucide-react'
 import { ContactForm } from '@/components/contact-form'
 
 export default function Page() {
-  const companyName = process.env.NEXT_PUBLIC_COMPANY_NAME?.trim() || 'MozzaBot'
+  const companyName = 'MozzaBot'
   const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() || 'hello@mozzabot.com'
   const availability = process.env.NEXT_PUBLIC_AVAILABILITY?.trim() || 'Monday – Friday, 9am – 6pm'
   const replyTime = process.env.NEXT_PUBLIC_REPLY_TIME?.trim() || 'Replies within one business day'

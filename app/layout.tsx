@@ -3,9 +3,8 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: `Contact ${process.env.NEXT_PUBLIC_COMPANY_NAME?.trim() || 'MozzaBot'}`,
-  description: `Get in touch with the ${process.env.NEXT_PUBLIC_COMPANY_NAME?.trim() || 'MozzaBot'} team.`,
-  generator: 'v0.app',
+  title: 'Contact MozzaBot',
+  description: 'Get in touch with the MozzaBot team.',
   icons: {
     icon: [
       {
